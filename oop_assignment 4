@@ -1,0 +1,109 @@
+#include <iostream>
+#include<fstream>
+using namespace std;
+ 
+template <class T> void bubbleSort(T a[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+        for (int j = n - 1; i < j; j--)
+            if (a[j] < a[j - 1])
+                swap(a[j], a[j - 1]);
+}
+
+
+class class_name{
+private:
+  int a,b;
+  
+public: 
+  class_name(int aa, int bb)
+  {
+      cout<<"Constructor is called"<<endl;
+      a = aa;
+      b = bb;
+      
+      cout<<"Value of a: "<<a<<endl;
+      cout<<"Value of b: "<<b<<endl;
+      cout<<endl;
+  }
+  
+  ~class_name()
+  {
+      cout<<"\nDestructor is called"<<endl;
+      cout<<"Value of a: "<<a<<endl;
+      cout<<"Value of b: "<<b<<endl;
+  }
+  
+};
+
+class Parent {
+public:
+    int id_p;
+};
+ 
+class Child : public Parent {
+public:
+    int id_c;
+};
+ 
+class Test    
+{    
+   private:    
+      int num;    
+   public:    
+       Test(): num(8){}    
+       void operator ++()         {     
+          num = num+2;     
+       }    
+       void Print() {     
+           cout<<"The Count is: "<<num;     
+       }    
+};  
+        
+     
+int main() 
+{
+    int a[5] = { 10, 50, 30, 40, 20 };
+    int n = sizeof(a) / sizeof(a[0]);
+  
+    bubbleSort<int>(a, n);
+  
+    cout << "Sorted array :\n";
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+    cout << endl;
+    class_name obj(5,6);
+    
+    Child obj1;
+    obj1.id_c = 7;
+    obj1.id_p = 91;
+    cout << "Child id is: " << obj1.id_c << '\n';
+    cout << "Parent id is: " << obj1.id_p << '\n';
+    
+    Test tt;    
+    ++tt;    
+    tt.Print(); 
+    
+     int rno,fee;
+      char name[50];
+      cout<<"\n\nEnter the Roll Number:";
+      cin>>rno;
+      cout<<"\nEnter the Name:";
+      cin>>name;
+      cout<<"\nEnter the Fee:";
+      cin>>fee;
+   
+      ofstream fout("d:/student.doc");
+      fout<<rno<<"\t"<<name<<"\t"<<fee;
+   
+      fout.close();
+   
+      ifstream fin("d:/student.doc");
+   
+      fin>>rno>>name>>fee;
+   
+      fin.close();
+   
+      cout<<endl<<rno<<"\t"<<name<<"\t"<<fee;
+      return 0;
+}
